@@ -1,0 +1,47 @@
+header {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  border-bottom: 2px solid #f5f5f7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#home {
+  font-size: 35px;
+  color: #ff0458;
+  font-weight: bold;
+}
+
+#search {
+  padding: 10px;
+  margin-right: 10px;
+  background-color: #f5f5f7;
+  border: none;
+}
+
+#login {
+  color: gray;
+  border: none;
+  background: none;
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+#signin {
+  font-weight: bold;
+  font-size: 15px;
+  background: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 8px 15px;
+}
+
+#login:hover {
+  cursor: pointer;
+}
+
+#signin:hover {
+  cursor: pointer;
+}
