@@ -8,16 +8,45 @@
     <title>WatchU</title>
   </head>
   <body>
-    <header>
+    <header class="mainHeader">
       <div>
         <span id="home">WATCHU</span>
       </div>
       <div>
-        <input id="search" type="text" placeholder="영화제목을 검색해보세요." />
-        <button id="login">로그인</button>
-        <button id="signin">회원가입</button>
+        <input id="search" type="text" placeholder="Search contents..." />
+        <button id="login">Login</button>
+        <button id="signUp">Sign Up</button>
       </div>
     </header>
+    <div class="modal_background1">
+      <div class="loginModal">
+        <header class="loginHeader">
+          <span>WATCHU</span>
+        </header>
+        <h2>Login</h2>
+        <form action="">
+          <input type="text" placeholder="ID" />
+          <input type="password" placeholder="Password" autocomplete="off" />
+          <button id="loginButton">Login</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal_background2">
+      <div class="signUpModal">
+        <header class="signUpHeader">
+          <span>WATCHU</span>
+        </header>
+        <h2>Sign Up</h2>
+        <form action="">
+          <input type="text" placeholder="Name" />
+          <input type="text" placeholder="ID" />
+          <input type="password" placeholder="Password" autocomplete="off" />
+          <button id="SignUpButton">Sign Up</button>
+        </form>
+      </div>
+    </div>
     <div class="contents"></div>
   </body>
+
+  <script type="" src="./app.js"></script>
 </html>
