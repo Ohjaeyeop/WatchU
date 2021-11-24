@@ -19,9 +19,11 @@ const handleClick = ({ target }) => {
     modalVisibility(signUpModal);
   } else {
     if (isModal) {
-      loginModal.style.display = "none";
-      signUpModal.style.display = "none";
-      isModal = false;
+      if (target === loginModal || target === signUpModal) {
+        loginModal.style.display = "none";
+        signUpModal.style.display = "none";
+        isModal = false;
+      }
     }
   }
 };
