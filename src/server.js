@@ -1,17 +1,8 @@
 import express from "express";
-import mysql from "mysql";
 import path from "path";
+import * as db from "./db.js"
 
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "ojy5002!@",
-});
-
-con.connect(function (err) {
-  if (err) throw err;
-  console.log("DB is Connected ✅");
-});
+db.init();
 
 const PORT = 3000;
 
