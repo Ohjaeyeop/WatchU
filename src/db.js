@@ -1,8 +1,11 @@
 import mysql from "mysql";
 import fs from "fs";
+import e from "express";
+
+var con;
 
 export function init() {
-    const con = mysql.createConnection({
+    con = mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "ojy5002!@",
@@ -28,46 +31,51 @@ export function init() {
         console.log("DB is reconnected ✅");
     });
 
-    insertUser(con);
-    insertMovie(con);
+    createTables();
+    insertData();
+
+    searchByTitle("The", function (err, result) {
+        if (err)
+            throw err;
+        else
+            console.log(result);
+    });
 }
 
-function insertUser(con) {
-    var user_data = fs.readFileSync('data/users.csv', 'utf8').toString().split("\n");
+export function searchByTitle(title, callback) {
+    var sql = `SELECT * FROM movie WHERE title LIKE \"%${title}%\"`;
+    con.query(sql, function (err, result) {
+        if (err)
+            callback(err, null);
+        else
+            callback(null, result);
+    });
+
+}
+
+
+function createTables() {
     var create_user_sql = "CREATE TABLE watchu_user (id INT PRIMARY KEY, name VARCHAR(255), password VARCHAR(255),  gender VARCHAR(255), age INT)";
     con.query(create_user_sql, function (err, result) {
         if (err) throw err;
         console.log("User Table created");
 
     });
-    var array = [];
-    for (var i of user_data) {
-        var tmp1 = i.split(",").slice(0, 3);
-        var tmp2 = [Number(tmp1[0]), "john", "yain1015", tmp1[1], Number(tmp1[2])];
-        array.push(tmp2);
-    }
-    var sql = "INSERT INTO watchu_user (id,name,password,gender,age) VALUES ?";
-    con.query(sql, [array], function (err) {
-        if (err) throw err;
-        console.log("User inserted");
-    });
-}
-
-function insertMovie(con) {
-    var movie_data = fs.readFileSync('data/movies_corrected.csv', 'utf8').toString().split("\n");
-    var create_movie_sql = "CREATE TABLE movie (id INT PRIMARY KEY, title VARCHAR(255), genre VARCHAR(255))";
+    var create_movie_sql = "CREATE TABLE movie (id INT PRIMARY KEY, title VARCHAR(255), year VARCHAR(255) ,genre VARCHAR(255), rating FLOAT, poster VARCHAR(255))";
     con.query(create_movie_sql, function (err, result) {
         if (err) throw err;
         console.log("Movie Table created");
-
     });
+}
+
+function insertData() {
+    var movie_data = fs.readFileSync('data/movie.dat', 'utf8').toString().split("\n");
     var array = [];
     for (var i of movie_data) {
-        var tmp1 = i.split(",");
-        var tmp2 = [Number(tmp1[0]), tmp1[1], tmp1[2]];
-        array.push(tmp2);
+        var movie = i.split("::");
+        array.push([parseInt(movie[0]), movie[1], movie[2], movie[3], parseFloat(movie[4]), movie[5]]);
     }
-    var sql = "INSERT INTO movie (id,title,genre) VALUES ?";
+    var sql = "INSERT INTO movie (id,title,year,genre,rating,poster) VALUES ?";
     con.query(sql, [array], function (err) {
         if (err) throw err;
         console.log("Movie inserted");
