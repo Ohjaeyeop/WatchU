@@ -2,6 +2,13 @@ export const home = (req, res) => {
   return res.render("home");
 };
 
+export const search = (req, res) => {
+  const { title } = req.query;
+  console.log(title);
+
+  // DB에서 영화 검색하기
+};
+
 export const signUp = (req, res) => {
   const { name, id, password } = req.body;
   console.log(req.body);

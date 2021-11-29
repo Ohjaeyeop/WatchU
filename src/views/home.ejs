@@ -13,7 +13,14 @@
         <span id="home">WATCHU</span>
       </div>
       <div>
-        <input id="search" type="text" placeholder="Search contents..." />
+        <form id="searchForm" action="/search" method="get">
+          <input
+            id="search"
+            name="title"
+            type="text"
+            placeholder="Search contents..."
+          />
+        </form>
         <button id="login">Login</button>
         <button id="signUp">Sign Up</button>
       </div>
