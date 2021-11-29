@@ -87,7 +87,7 @@
   border-radius: 4px;
 }
 
-.loginModal button {
+#loginButton {
   width: 88%;
   background-color: #ff0458;
   color: white;
@@ -140,7 +140,7 @@
   border-radius: 4px;
 }
 
-.signUpModal button {
+#signUpButton {
   width: 88%;
   background-color: #ff0458;
   color: white;
@@ -150,4 +150,12 @@
   margin-top: 20px;
   margin-bottom: 40px;
   font-size: 15px;
+}
+
+#loginButton:hover {
+  cursor: pointer;
+}
+
+#signUpButton:hover {
+  cursor: pointer;
 }
