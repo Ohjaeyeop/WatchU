@@ -1,3 +1,4 @@
+import { render } from "ejs";
 import { searchByTitle } from "../db.js";
 
 export const home = (req, res) => {
@@ -33,4 +34,13 @@ export const login = (req, res) => {
   // DB에 존재하는 id인지 확인
   // 존재한다면 id와 password가 일치하는지 확인
   // 일치한다면 해당 user의 정보 리턴
+};
+
+export const detail = (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  // id로 영화검색 후 해당 영화정보 리턴
+
+  return res.render("detail");
 };

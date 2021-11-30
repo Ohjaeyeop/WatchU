@@ -2,7 +2,13 @@
 <div class="contents">
   <% movies.forEach(function (movie) { %>
   <div class="movie">
-    <img width="240px" height="320px" src="<%= movie.poster %>" />
+    <img
+      width="240px"
+      height="320px"
+      src="<%= movie.poster %>"
+      onclick="location.href='movie/<%= movie.id %>'"
+      style="cursor: pointer"
+    />
     <h5><%= movie.title %></h5>
     <span><%= movie.year %></span>
   </div>
