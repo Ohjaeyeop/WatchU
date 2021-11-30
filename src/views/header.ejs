@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>WatchU</title>
+  </head>
+  <body>
+    <header class="mainHeader">
+      <div>
+        <span id="home">WATCHU</span>
+      </div>
+      <div>
+        <form id="searchForm" action="/search" method="get">
+          <input
+            id="search"
+            name="title"
+            type="text"
+            placeholder="Search contents..."
+          />
+        </form>
+        <button id="login">Login</button>
+        <button id="signUp">Sign Up</button>
+      </div>
+    </header>
+    <div class="modal_background1">
+      <div class="loginModal">
+        <header class="loginHeader">
+          <span>WATCHU</span>
+        </header>
+        <h2>Login</h2>
+        <form action="/login" method="post">
+          <input type="text" name="id" placeholder="ID" />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            autocomplete="off"
+          />
+          <input type="submit" id="loginButton" value="Login" />
+        </form>
+      </div>
+    </div>
+    <div class="modal_background2">
+      <div class="signUpModal">
+        <header class="signUpHeader">
+          <span>WATCHU</span>
+        </header>
+        <h2>Sign Up</h2>
+        <form action="/signUp" method="post">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="text" name="id" placeholder="ID" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            autocomplete="off"
+            required
+          />
+          <input type="submit" id="signUpButton" value="Sign Up" />
+        </form>
+      </div>
+    </div>
+    <div class="contents"></div>
+  </body>
+</html>

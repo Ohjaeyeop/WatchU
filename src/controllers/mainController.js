@@ -1,4 +1,4 @@
-import * as db from "../db"
+import { searchByTitle } from "../db.js";
 
 export const home = (req, res) => {
   return res.render("home");
@@ -6,13 +6,12 @@ export const home = (req, res) => {
 
 export const search = (req, res) => {
   const { title } = req.query;
-  console.log(title);
 
-  searchByTitle("The", function (err, result) {
-    if (err)
-      throw err;
-    else
-      console.log(result);
+  searchByTitle(title, function (err, result) {
+    if (err) throw err;
+    else {
+      return res.render("search", { result });
+    }
   });
 
   // title로 DB에서 영화 검색하기

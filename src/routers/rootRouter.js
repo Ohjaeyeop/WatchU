@@ -7,5 +7,6 @@ rootRouter.get("/", home);
 rootRouter.get("/search", search);
 rootRouter.post("/signUp", signUp);
 rootRouter.post("/login", login);
+rootRouter.get("/search", search);
 
 export default rootRouter;
