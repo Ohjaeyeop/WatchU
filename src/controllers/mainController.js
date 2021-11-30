@@ -1,6 +1,8 @@
 import { searchByTitle } from "../db.js";
 
 export const home = (req, res) => {
+  // 모든 영화 리스트 db에서 가져오기
+
   return res.render("home");
 };
 
@@ -10,7 +12,7 @@ export const search = (req, res) => {
   searchByTitle(title, function (err, result) {
     if (err) throw err;
     else {
-      return res.render("search", { result });
+      return res.render("search", { movies: result });
     }
   });
 
