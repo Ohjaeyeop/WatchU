@@ -5,7 +5,7 @@ export const home = (req, res) => {
   searchAllMovie(function (err, result) {
     if (err) throw err;
     else {
-      return res.render("home", { movies: result });
+      return res.render("home", { movies: result.slice(0, 50) });
     }
   });
 };
@@ -19,21 +19,19 @@ export const search = (req, res) => {
       return res.render("search", { movies: result });
     }
   });
-
   // title로 DB에서 영화 검색하기
   // 해당 영화 정보 리턴
 };
 
 export const detail = (req, res) => {
   const { id } = req.params;
-  console.log(id);
 
   // id로 영화검색 후 해당 영화정보 리턴
   searchMovieById(id, function (err, result) {
     if (err) throw err;
     else {
-      console.log(result);
-      return res.render("detail", { movie: result });
+      console.log(result[0]);
+      return res.render("detail", { movie: result[0] });
     }
   });
 };
