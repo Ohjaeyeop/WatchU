@@ -21,8 +21,15 @@
             placeholder="Search contents..."
           />
         </form>
+        <% if(!loggedIn) { %>
         <button id="login">Login</button>
         <button id="signUp">Sign Up</button>
+        <% } else { %>
+        <button id="mypage">My page</button>
+        <form action="/logout" method="post" style="display: inline">
+          <button id="logout">Logout</button>
+        </form>
+        <% } %>
       </div>
     </header>
     <div class="modal_background1">
