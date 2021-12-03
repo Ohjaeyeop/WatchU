@@ -1,0 +1,92 @@
+.detail {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+.info1 img {
+  float: left;
+  margin-right: 40px;
+}
+
+.info1 .title {
+  padding-top: 30px;
+  margin-bottom: 0;
+}
+
+.detailInfo {
+  margin-top: 50px;
+}
+
+.review {
+  margin-top: 30px;
+}
+
+.review:hover {
+  cursor: pointer;
+}
+
+.review svg {
+  vertical-align: text-bottom;
+}
+
+.reviewModal_background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.reviewModal {
+  position: absolute;
+  left: 40%;
+  top: 25%;
+  width: 20%;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: white;
+}
+
+.reviewModal textarea {
+  width: 80%;
+  padding: 15px;
+  font-size: 15px;
+  border: none;
+  resize: none;
+  margin-bottom: 30px;
+}
+
+.rate {
+  width: 80%;
+  margin: 0 auto;
+  text-align: left;
+  padding: 10px;
+  border-bottom: 2px solid #f5f5f7;
+}
+
+.rate span {
+  margin-right: 4px;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.reviewHeader input {
+  border: none;
+  background: white;
+}
+
+.reviewHeader input:hover {
+  cursor: pointer;
+}
+
+.dummy {
+  visibility: hidden;
+}

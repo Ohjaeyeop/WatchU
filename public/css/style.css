@@ -1,3 +1,5 @@
+@import url("detail.css");
+
 .mainHeader {
   width: 80%;
   margin: 0 auto;
@@ -192,36 +194,4 @@ a {
 .movie span {
   color: gray;
   font-size: 12px;
-}
-
-.detail {
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 80px;
-}
-
-.info1 img {
-  float: left;
-  margin-right: 40px;
-}
-
-.info1 .title {
-  padding-top: 30px;
-  margin-bottom: 0;
-}
-
-.detailInfo {
-  margin-top: 50px;
-}
-
-.review {
-  margin-top: 30px;
-}
-
-.review:hover {
-  cursor: pointer;
-}
-
-.review svg {
-  vertical-align: text-bottom;
 }
