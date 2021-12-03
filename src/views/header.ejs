@@ -25,7 +25,9 @@
         <button id="login">Login</button>
         <button id="signUp">Sign Up</button>
         <% } else { %>
-        <button id="mypage">My page</button>
+        <button id="mypage">
+          <a href="/users/<%= user[0].id %>">My Page</a>
+        </button>
         <form action="/logout" method="post" style="display: inline">
           <button id="logout">Logout</button>
         </form>

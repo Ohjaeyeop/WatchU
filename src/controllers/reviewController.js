@@ -12,5 +12,5 @@ export const postReview = (req, res) => {
   // 해당 유저와 review 연결  (one to many)
   // 해당 유저와 영화 연결  (many to many)
 
-  return res.redirect("/");
+  return res.redirect(`/movie/${movieId}`);
 };
