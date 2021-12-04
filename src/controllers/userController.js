@@ -1,4 +1,4 @@
-import { searchUserById, signUpDb, logIn } from "../db.js";
+import { searchUserById, signUpDb, logIn, searchUserByIdWithReview } from "../db.js";
 
 export const signUp = (req, res) => {
   const { name, id, password } = req.body;
@@ -42,8 +42,13 @@ export const logout = (req, res) => {
 export const mypage = (req, res) => {
   const { id } = req.params;
 
+  searchUserByIdWithReview(id, function (err, result) {
+    if (err) throw err;
+    else {
+      console.log(result);
+      return res.render("mypage");
+    }
+  });
   // id로 user 검색해서 해당 유저 리턴
   // 해당 유저가 작성한 리뷰, 리뷰를 남긴 영화 정보도 필요함.
-
-  return res.render("mypage");
 };
