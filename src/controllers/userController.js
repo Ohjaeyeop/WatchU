@@ -42,8 +42,7 @@ export const logout = (req, res) => {
 export const mypage = (req, res) => {
   const { id } = req.params;
 
-  // id로 user 검색해서 해당 유저 리턴
-  // 해당 유저가 작성한 리뷰, 리뷰를 남긴 영화 정보도 필요함.
+  // 해당 유저가 작성한 리뷰, 리뷰를 남긴 영화 정보 리턴
 
   return res.render("mypage");
 };
