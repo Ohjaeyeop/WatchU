@@ -1,0 +1,23 @@
+.mypage {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.mypage h3 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.watchedMovies {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  justify-content: center;
+}
+
+.watchedMovies .movie span {
+  color: #ffa135;
+}
+
+.watchedMovies .movie span svg {
+  vertical-align: text-top;
+}

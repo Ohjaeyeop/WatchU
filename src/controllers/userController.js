@@ -1,4 +1,9 @@
-import { searchUserById, signUpDb, logIn, searchUserByIdWithReview } from "../db.js";
+import {
+  searchUserById,
+  signUpDb,
+  logIn,
+  searchUserByIdWithReview,
+} from "../db.js";
 
 export const signUp = (req, res) => {
   const { name, id, password } = req.body;
@@ -45,8 +50,14 @@ export const mypage = (req, res) => {
   searchUserByIdWithReview(id, function (err, result) {
     if (err) throw err;
     else {
-      console.log(result);
-      return res.render("mypage");
+      let reviews = {};
+      for (let review of result.reviews) {
+        const id = review.movie_id;
+        reviews[id] = review.rating;
+      }
+
+      const movies = result.movies;
+      return res.render("mypage", { reviews, movies });
     }
   });
   // id로 user 검색해서 해당 유저 리턴

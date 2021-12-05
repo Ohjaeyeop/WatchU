@@ -5,10 +5,6 @@ export const postReview = (req, res) => {
   const { id: movieId } = req.params; // 평점을 남긴 영화의 id
   const user = req.session.user; // 평점을 남긴 유저 정보
 
-  console.log(movieId);
-  console.log(user);
-  console.log(rate, comment);
-
   writeReview(rate, comment, user[0]["id"], movieId, function (err, result) {
     if (err) throw err;
     else {
