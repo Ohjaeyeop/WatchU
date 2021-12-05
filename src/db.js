@@ -117,14 +117,22 @@ export function searchMovieById(id, callback) {
                     result[0].genres = genres;
                     var sql3 = `SELECT name FROM actor WHERE id IN (SELECT actor_id FROM movie_actor WHERE movie_id=${id})`
                     con.query(sql3, function (err, result2) {
-                        if (err) callback(err, null);
+                        if (err) throw err;
                         else {
                             var actors = [];
                             for (var data1 of result2) {
                                 actors.push(data1.name);
                             }
                             result[0].actors = actors;
-                            callback(null, result);
+                            var sql4 = `SELECT * FROM review WHERE movie_id=${id}`;
+                            con.query(sql4, function (err, result3) {
+                                if (err) throw err;
+                                else {
+                                    result[0].reviews = result3;
+                                    callback(null, result);
+                                }
+                            });
+
                         }
                     });
 
