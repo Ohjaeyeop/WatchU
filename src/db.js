@@ -14,6 +14,7 @@ export function init() {
         host: "localhost",
         user: "root",
         password: "ojy5002!@",
+        multipleStatements: true
     });
 
     con.connect(function (err) {
@@ -101,20 +102,32 @@ export function searchUserById(id, callback) {
 }
 
 export function searchMovieById(id, callback) {
-    var sql = `SELECT * FROM movie WHERE id=${id}`;
+    var sql = `SELECT id,title,year,rating,poster, (SELECT name FROM director WHERE id=director_id) as director FROM movie WHERE id=${id}`;
     con.query(sql, function (err, result) {
         if (err) throw err;
         else {
             var sql2 = `SELECT * FROM genre WHERE id IN (SELECT genre_id FROM movie_genre WHERE movie_id=${id})`
             con.query(sql2, function (err, result1) {
-                if (err) callback(err, null);
+                if (err) throw err;
                 else {
                     var genres = [];
                     for (var data of result1) {
                         genres.push(data.name);
                     }
                     result[0].genres = genres;
-                    callback(null, result);
+                    var sql3 = `SELECT name FROM actor WHERE id IN (SELECT actor_id FROM movie_actor WHERE movie_id=${id})`
+                    con.query(sql3, function (err, result2) {
+                        if (err) callback(err, null);
+                        else {
+                            var actors = [];
+                            for (var data1 of result2) {
+                                actors.push(data1.name);
+                            }
+                            result[0].actors = actors;
+                            callback(null, result);
+                        }
+                    });
+
                 }
             });
         }
@@ -187,7 +200,7 @@ function createTables() {
         console.log("Movie_Genre Table created");
     });
     var create_movie_actor_sql =
-        "CREATE TABLE movie_artis (id INT AUTO_INCREMENT PRIMARY KEY, movie_id INT, actor_id INT, FOREIGN KEY (movie_id) REFERENCES movie(id), FOREIGN KEY (actor_id) REFERENCES actor(id))";
+        "CREATE TABLE movie_actor (id INT AUTO_INCREMENT PRIMARY KEY, movie_id INT, actor_id INT, FOREIGN KEY (movie_id) REFERENCES movie(id), FOREIGN KEY (actor_id) REFERENCES actor(id))";
     con.query(create_movie_actor_sql, function (err, result) {
         if (err) throw err;
         console.log("Movie_Actor Table created");
@@ -240,5 +253,37 @@ function insertData() {
     con.query(user_sql, function (err) {
         if (err) throw err;
         console.log("User inserted");
+    });
+
+    var director_sql =
+        'INSERT INTO director (name) VALUES ("John Lasseter"),("Joe Johnston"),("Howard Deutch")';
+    con.query(director_sql, function (err) {
+        if (err) throw err;
+        console.log("Director inserted");
+    });
+
+    var actor_sql =
+        'INSERT INTO actor (name) VALUES ("Tom Hanks"),("Tim Allen"),("Robin Williams"),("Jonathan Hyde"),("Walter Matthau"),("Jack Lemmon")';
+    con.query(actor_sql, function (err) {
+        if (err) throw err;
+        console.log("Actor inserted");
+    });
+
+    var movie_director_sql =
+        `UPDATE movie SET director_id=1 WHERE id=1;
+         UPDATE movie SET director_id=2 WHERE id=2;
+         UPDATE movie SET director_id=3 WHERE id=3;`;
+    con.query(movie_director_sql, function (err, results) {
+        if (err) throw err;
+        console.log("Movie_Director inserted");
+    });
+
+    var actor_sql =
+        `INSERT INTO movie_actor (movie_id,actor_id) VALUES (1,1), (1,2);
+         INSERT INTO movie_actor (movie_id,actor_id) VALUES (2,3), (2,4);
+         INSERT INTO movie_actor (movie_id,actor_id) VALUES (3,5), (3,6);`;
+    con.query(actor_sql, function (err) {
+        if (err) throw err;
+        console.log("Movie_Actor inserted");
     });
 }
